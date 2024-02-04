@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.30)), url('/static/ToDoList.jpg');
+        background-position: center;
+        height: 100vh;
+        background-size: cover;
+        margin: 0;
+        padding: 10px;
+    }
+</style>
+<div class="content" style="margin-top: 5%; padding: 5%;">
+    <h1 style="text-align: center; color: #ffffffaa; text-shadow: 2px 2px 4px;">Update Task</h1>
+
+    <br>
+    <form action="/update/{{ task.id }}" method="POST" style="text-align: center;">
+        <input type="text" name="content" id="content" value="{{ task.content }}" style="background-color: #ffffffaa; border: none;">
+        <input type="submit" value="Update" style="background-color: rosybrown; border: none; color: rgb(245, 245, 245);">
+    </form>
+</div>
+{% endblock %}

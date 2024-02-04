@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.30)), url('/static/Organize.jpeg');
+        background-position: center;
+        height: 100vh;
+        background-size: cover;
+        margin: 0;
+        padding: 10px;
+    }
+</style>
+<div class="content" style="margin-top: 5%; padding: 5%;">
+    <h1 style="text-align: center; color: #ffffffaa; text-shadow: 2px 2px 4px;">Task Manager</h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center; color: #ffffffaa; text-shadow: 2px 2px 4px; padding: 2%;">
+        There are no task. Create task below!</h4>
+    {% else %}
+
+    <table class="center">
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{ task.id }}" style="display: flex; justify-content: center;"><i class="fas fa-solid fa-trash" style="color: #bc8f8f;"></i></a>
+                    <br>
+                    <a href="/update/{{ task.id }}" style="display: flex; justify-content: center;"><i class="fas fa-sharp fa-solid fa-pen-fancy" style="color: #bc8f8f;"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <br>
+    <form action="/" method="POST" style="text-align: center;">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Add Task" style="background-color: rosybrown; border: none; color: rgb(245, 245, 245);" >
+    </form>
+</div>
+{% endblock %}
